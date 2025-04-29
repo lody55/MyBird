@@ -17,12 +17,15 @@ namespace MyBird
         //스폰 간격
         [SerializeField] private float maxSpawnTime = 1.05f;
         [SerializeField] private float minSpawnTime = 0.95f;
+
+        //애니메이터
+        
         #endregion
 
         //1초마다 기둥 하나씩 생성, 게임 시작시 
         private void Update()
         {
-            if (GameManager.IsStart == false) return;
+            if (GameManager.IsStart == false|| GameManager.IsDeath == true) return;
             countdown += Time.deltaTime;
             if (countdown >= time)
             {

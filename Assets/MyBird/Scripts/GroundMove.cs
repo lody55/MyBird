@@ -17,6 +17,9 @@ namespace MyBird
         //배경을 왼쪽으로 이동 시킨다  , 배경의 x좌표가 -8.4보다 같거나 작으면 x좌표를 제자리로 놓는다
         private void Move()
         {
+            if (GameManager.IsDeath == true) return;
+            
+
             if (GameManager.IsStart == false) return;
             //배경 롤링
             if (transform.localPosition.x <= -8.4f)
