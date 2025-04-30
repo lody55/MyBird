@@ -14,9 +14,11 @@ namespace MyBird
         private float spawnMaxY = 2.1f;
         private float spawnMinY = -2.6f;
 
-        //스폰 간격
+        //스폰 간격 >> 10개통과 후 0.9 ~ 1.0  >> 다시 10개 통과 후 0.85 ~ 0.95
         [SerializeField] private float maxSpawnTime = 1.05f;
         [SerializeField] private float minSpawnTime = 0.95f;
+
+        [SerializeField] private float levelTime = 0.05f;
 
         //애니메이터
         
@@ -31,8 +33,10 @@ namespace MyBird
             {
                 SpawnPipe();
                 countdown = 0f;
-                time = Random.Range(minSpawnTime, maxSpawnTime);
+                float levelingValue = (int)(GameManager.Score / 5) * levelTime;
+                time = Random.Range(minSpawnTime - levelingValue, maxSpawnTime - levelingValue);
             }
+            
             
             
         }

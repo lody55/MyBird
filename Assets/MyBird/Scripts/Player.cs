@@ -13,6 +13,7 @@ namespace MyBird
         private Rigidbody2D rb2D;
 
         public Animator animator;
+        private AudioSource audio;
 
         //점프
         private bool keyJump = false;   //점프키 인풋 체크
@@ -43,6 +44,7 @@ namespace MyBird
         {
             rb2D = this.GetComponent<Rigidbody2D>();
             resultUI.SetActive(false);
+            audio = this.GetComponent<AudioSource>();
         }
 
         private void FixedUpdate()
@@ -71,6 +73,15 @@ namespace MyBird
                 //Debug.Log("포인트 획득");
                 GameManager.Score++;
 
+                ////10개씩 통과할 때 마다 난이도 조정
+                //if(GameManager.Score%10 ==0 )
+                //{
+
+                //}
+                
+
+                //사운드
+                audio.Play();
                 
             }
 
@@ -128,16 +139,30 @@ namespace MyBird
 
         private void InputBird()
         {
+#if UNITY_EDITOR
             if (GameManager.IsDeath == true) return;
             //스페이스키 또는 마우스 왼클릭 받기
             keyJump |= Input.GetKeyDown(KeyCode.Space);
             keyJump |= Input.GetMouseButtonDown(0);
+#else
+            //터치 인풋처리
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);    //첫번째 터치만 처리
+
+                if(touch.phase == UnityEngine.TouchPhase.Began)
+                {
+                    keyJump |= true;
+                }
+            }
+#endif
 
             //게임 start전 점프 키 누르면 시작
-            if(GameManager.IsStart == false && keyJump ==  true)
+            if (GameManager.IsStart == false && keyJump ==  true)
             {
                 StartMove();
             }
+
         }
         //버드 대기
         void ReadyBird()
@@ -187,6 +212,6 @@ namespace MyBird
             // 여기에 씬 로드 코드를 넣는다
             resultUI.SetActive(true);
         }
-        #endregion
+#endregion
     }
 }

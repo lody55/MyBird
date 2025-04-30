@@ -10,6 +10,9 @@ EditorBuildSettings:
     guid: 9716d830e24fc8e4ea12eb38a4516eae
   - enabled: 1
     path: Assets/MyBird/Scenes/PlayScene.unity
+    guid: 35d9b542e2ae38249bf005b864df4c0a
+  - enabled: 0
+    path: Assets/MyBird/Scenes/PlayScene2.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
